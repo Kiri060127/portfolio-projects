@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智析 - 企业级数据协作平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            background: #fafafa;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            z-index: 1000;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            color: #e85d04;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+        .btn {
+            display: inline-block;
+            padding: 9px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #1a1a1a;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            border: 1.5px solid #ddd;
+            color: #333;
+            background: transparent;
+        }
+        .btn-outline:hover {
+            border-color: #333;
+            background: #333;
+            color: white;
+        }
+        /* Hero */
+        .hero {
+            padding: 140px 0 80px;
+            background: #fff;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: #1a1a1a;
+            line-height: 1.25;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        /* 功能区 */
+        .features {
+            padding: 80px 0;
+            background: #fafafa;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.75rem;
+            margin-bottom: 2.5rem;
+            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            padding: 1.75rem;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            transition: border-color 0.2s;
+        }
+        .feature-card:hover {
+            border-color: #ddd;
+        }
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        /* 定价 */
+        .pricing {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .price-card {
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 2rem 1.75rem;
+            flex: 1;
+            min-width: 260px;
+            max-width: 300px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-width 0.25s ease, border-color 0.25s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+            border: 2px solid #1a1a1a;
+        }
+       
+        .price-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0.8rem 0;
+            letter-spacing: -0.02em;
+        }
+        .price span {
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: 400;
+        }
+        .price-card ul {
+            list-style: none;
+            margin: 1.2rem 0;
+            text-align: left;
+        }
+        .price-card li {
+            margin: 0.5rem 0;
+            color: #555;
+            font-size: 0.9rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .price-card li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 5px;
+            height: 5px;
+            background: #e85d04;
+            border-radius: 50%;
+        }
+        /* 证言 */
+        .testimonials {
+            padding: 80px 0;
+            background: #fafafa;
+        }
+        .testimonial-list {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .testimonial-item {
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+        .testimonial-item p {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.75rem;
+            line-height: 1.65;
+        }
+        .testimonial-item cite {
+            font-style: normal;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        /* 联系 */
+        .contact {
+            padding: 80px 0;
+            background: #1a1a1a;
+            color: white;
+        }
+        .contact h2 {
+            color: #fff;
+        }
+        .contact-form {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            font-size: 0.95rem;
+            background: #222;
+            color: #fff;
+            outline: none;
+            font-family: inherit;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #666;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #444;
+        }
+        .contact-form button {
+            align-self: flex-start;
+            background: #e85d04;
+        }
+        .contact-form button:hover {
+            background: #d45503;
+        }
+        /* 弹窗 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            color: #1a1a1a;
+            max-width: 360px;
+        }
+        .modal-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .modal-content p {
+            color: #666;
+            margin-bottom: 1.25rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #111;
+            color: #555;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">智<span>析</span></div>
+            <ul class="nav-links">
+                <li><a href="#features">功能</a></li>
+                <li><a href="#pricing">定价</a></li>
+                <li><a href="#testimonials">用户反馈</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+            <a href="#" class="btn btn-primary">开始使用</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>让数据协作<br>真正高效起来</h1>
+            <p>智析将数据清洗、分析与可视化整合在一起。拖拽即可生成报告，团队成员实时同步，告别来回传文件的麻烦。</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">免费试用</a>
+                <a href="#" class="btn btn-outline">查看案例</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">核心能力</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <path d="M14 17.5h7M17.5 14v7"/>
+                    </svg>
+                    <h3>多维图表</h3>
+                    <p>拖拽配置，支持折线、柱状、散点等常用图表类型，满足日常汇报需求。</p>
+                </div>
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="8" r="3"/>
+                        <circle cx="6" cy="16" r="2.5"/>
+                        <circle cx="18" cy="16" r="2.5"/>
+                        <path d="M12 11v2M6.5 14l-0.5 1M18.5 14l0.5 1"/>
+                    </svg>
+                    <h3>实时协作</h3>
+                    <p>同一份报告多人同时编辑，修改即时同步，每次打开都是最新版本。</p>
+                </div>
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="5" y="11" width="14" height="10" rx="2"/>
+                        <path d="M8 11V7a4 4 0 018 0v4"/>
+                        <circle cx="12" cy="16" r="1"/>
+                    </svg>
+                    <h3>权限管理</h3>
+                    <p>灵活设置查看、编辑、管理权限，敏感数据只推送给需要的人。</p>
+                </div>
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    <h3>快速响应</h3>
+                    <p>优化查询性能，千万级数据也能在数秒内返回结果。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">方案选择</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>基础版</h3>
+                    <div class="price">¥199<span>/月</span></div>
+                    <ul>
+                        <li>5 个成员</li>
+                        <li>10 GB 存储空间</li>
+                        <li>基础图表功能</li>
+                        <li>邮件技术支持</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">开始试用</a>
+                </div>
+                <div class="price-card featured">
+                    <h3>专业版</h3>
+                    <div class="price">¥499<span>/月</span></div>
+                    <ul>
+                        <li>20 个成员</li>
+                        <li>100 GB 存储空间</li>
+                        <li>高级图表与协作功能</li>
+                        <li>优先技术支持</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">立即订阅</a>
+                </div>
+                <div class="price-card">
+                    <h3>企业版</h3>
+                    <div class="price">¥999<span>/月</span></div>
+                    <ul>
+                        <li>不限成员数</li>
+                        <li>1 TB 存储空间</li>
+                        <li>支持私有化部署</li>
+                        <li>专属客户成功经理</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">联系销售</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">用户反馈</h2>
+            <div class="testimonial-list">
+                <div class="testimonial-item">
+                    <p>"之前每周要花两天整理数据报表，现在半天就够了。团队终于可以把时间花在分析本身，而不是在Excel里来回折腾。"</p>
+                    <cite>— 某零售企业 数据分析负责人</cite>
+                </div>
+                <div class="testimonial-item">
+                    <p>"最实用的是协作功能，老板和销售都能直接看最新数据，不用再等我导出截图发群里。"</p>
+                    <cite>— 某营销 agency 运营总监</cite>
+                </div>
+                <div class="testimonial-item">
+                    <p>"部署不到一天，团队就上手了。技术支持响应很快，有问题基本当天能解决。"</p>
+                    <cite>— 某科技公司 技术负责人</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="您的姓名" required>
+                <input type="email" placeholder="工作邮箱" required>
+                <textarea rows="4" placeholder="请描述您的需求" required></textarea>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 智析科技</p>
+    </footer>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <h3>提交成功</h3>
+            <p>我们将在24小时内与您联系。</p>
+            <button class="btn btn-primary" id="closeModal">确定</button>
+        </div>
+    </div>
+
+    <script>
+        // 表单提交
+        const form = document.getElementById('contactForm');
+        const modal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+            form.reset();
+        });
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

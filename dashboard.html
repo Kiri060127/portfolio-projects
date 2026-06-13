@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业数字化转型看板</title>
+    <style>
+        :root {
+            --bg: #f5f5f0;
+            --card-bg: #ffffff;
+            --accent: #c45d3a;
+            --accent-light: #e8a088;
+            --text: #2d2d2d;
+            --text-secondary: #777;
+            --border: #e0e0e0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .header-meta {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        /* 指标卡片 */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .metric-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .metric-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.4rem;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+        }
+        .metric-change {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .metric-change.up { color: #2d8a4e; }
+        .metric-change.down { color: #c45d3a; }
+        /* 筛选栏 */
+        .filters {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 0.875rem 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-group label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.15s;
+        }
+        .filter-btn:hover {
+            border-color: var(--text-secondary);
+            color: var(--text);
+        }
+        .filter-btn.active {
+            background: var(--text);
+            color: white;
+            border-color: var(--text);
+        }
+        /* 图表区域 */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 800px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .chart-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .chart-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        .chart-title {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        /* 柱状图 */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 1.5rem;
+            height: 140px;
+            padding-bottom: 24px;
+        }
+        .bar-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .bar {
+            width: 100%;
+            max-width: 48px;
+            background: var(--accent);
+            border-radius: 3px 3px 0 0;
+            transition: height 0.4s ease;
+            position: relative;
+            min-height: 3px;
+        }
+        .bar-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+        .bar-value {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        /* 环形图 */
+        .donut-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 160px;
+        }
+        .donut {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) 0deg, var(--accent-light) 0deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .donut::after {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: var(--card-bg);
+            border-radius: 50%;
+        }
+        .donut-label {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .donut-label .percent {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .donut-label .desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+        /* 表格 */
+        .table-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            text-align: left;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.8rem;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            user-select: none;
+        }
+        th:hover {
+            color: var(--text);
+        }
+        th .sort-icon {
+            font-size: 0.65rem;
+            margin-left: 3px;
+        }
+        td {
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .status-completed { background: #e8f5e9; color: #2d8a4e; }
+        .status-progress { background: #fff3e0; color: #c45d3a; }
+        .status-pending { background: #f5f5f5; color: #777; }
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <div>
+                <h1>数字化转型进度</h1>
+                <div class="header-meta">2026年度 · 截至Q2</div>
+            </div>
+            <div class="header-meta">更新于 2026-06-12</div>
+        </header>
+
+        <!-- 关键指标卡片 -->
+        <div class="metrics-grid" id="metricsContainer"></div>
+
+        <!-- 筛选条件 -->
+        <div class="filters">
+            <div class="filter-group">
+                <label>部门：</label>
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="研发">研发</button>
+                <button class="filter-btn" data-filter="市场">市场</button>
+                <button class="filter-btn" data-filter="运营">运营</button>
+                <button class="filter-btn" data-filter="销售">销售</button>
+            </div>
+            <div class="filter-group">
+                <label>时间：</label>
+                <button class="filter-btn active" data-period="2026">2026</button>
+                <button class="filter-btn" data-period="2025">2025</button>
+                <button class="filter-btn" data-period="2024">2024</button>
+            </div>
+        </div>
+
+        <!-- 图表区域 -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-title">各部门项目数</div>
+                <div class="bar-chart" id="barChart"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">完成率</div>
+                <div class="donut-container">
+                    <div class="donut" id="donutChart">
+                        <div class="donut-label">
+                            <div class="percent" id="donutPercent">--</div>
+                            <div class="desc">完成</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目明细表格 -->
+        <div class="table-card">
+            <div class="chart-title" style="margin-bottom: 0.75rem;">项目列表</div>
+            <table id="projectTable">
+                <thead>
+                    <tr>
+                        <th data-sort="name">项目 <span class="sort-icon">⇅</span></th>
+                        <th data-sort="dept">部门 <span class="sort-icon">⇅</span></th>
+                        <th data-sort="progress">进度 <span class="sort-icon">⇅</span></th>
+                        <th data-sort="status">状态 <span class="sort-icon">⇅</span></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>企业数字化看板</footer>
+
+    <script>
+        const projectData = [
+            { name: 'ERP系统升级', dept: '研发', progress: 92, status: 'completed' },
+            { name: '客户画像平台', dept: '市场', progress: 78, status: 'progress' },
+            { name: '智能客服机器人', dept: '运营', progress: 45, status: 'progress' },
+            { name: '销售漏斗分析', dept: '销售', progress: 100, status: 'completed' },
+            { name: '数据中台建设', dept: '研发', progress: 65, status: 'progress' },
+            { name: '自动化营销平台', dept: '市场', progress: 30, status: 'pending' },
+            { name: '供应链优化', dept: '运营', progress: 88, status: 'completed' },
+            { name: 'CRM重构', dept: '销售', progress: 15, status: 'pending' },
+        ];
+
+        let currentFilter = 'all';
+
+        function getFilteredProjects() {
+            if (currentFilter === 'all') return projectData;
+            return projectData.filter(p => p.dept === currentFilter);
+        }
+
+        function renderMetrics() {
+            const filtered = getFilteredProjects();
+            const totalProjects = filtered.length;
+            const avgProgress = filtered.length ? Math.round(filtered.reduce((s, p) => s + p.progress, 0) / filtered.length) : 0;
+            const completed = filtered.filter(p => p.status === 'completed').length;
+            const inProgress = filtered.filter(p => p.status === 'progress').length;
+
+            const metricsContainer = document.getElementById('metricsContainer');
+            metricsContainer.innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-label">总项目数</div>
+                    <div class="metric-value">${totalProjects}</div>
+                    <div class="metric-change up">较去年同期+2</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">平均进度</div>
+                    <div class="metric-value">${avgProgress}%</div>
+                    <div class="metric-change up">持续推进中</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">已完成</div>
+                    <div class="metric-value">${completed}</div>
+                    <div class="metric-change up">本年新增2个</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">进行中</div>
+                    <div class="metric-value">${inProgress}</div>
+                    <div class="metric-change down">1个项目延后</div>
+                </div>
+            `;
+        }
+
+        function renderBarChart() {
+            const filtered = getFilteredProjects();
+            const deptCount = {};
+            filtered.forEach(p => {
+                deptCount[p.dept] = (deptCount[p.dept] || 0) + 1;
+            });
+            const maxVal = Math.max(...Object.values(deptCount), 1);
+            const barChart = document.getElementById('barChart');
+            barChart.innerHTML = Object.entries(deptCount).map(([dept, count]) => {
+                const heightPercent = (count / maxVal) * 100;
+                return `
+                    <div class="bar-item">
+                        <div class="bar" style="height: ${heightPercent}%;">
+                            <span class="bar-value">${count}</span>
+                        </div>
+                        <span class="bar-label">${dept}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderDonut() {
+            const filtered = getFilteredProjects();
+            const completed = filtered.filter(p => p.status === 'completed').length;
+            const total = filtered.length || 1;
+            const percent = Math.round((completed / total) * 100);
+            const degree = (percent / 100) * 360;
+
+            const donut = document.getElementById('donutChart');
+            donut.style.background = `conic-gradient(var(--accent) 0deg ${degree}deg, var(--border) ${degree}deg 360deg)`;
+            document.getElementById('donutPercent').textContent = percent + '%';
+        }
+
+        function renderTable() {
+            const filtered = getFilteredProjects();
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = filtered.map(p => {
+                let statusClass = '';
+                let statusText = '';
+                if (p.status === 'completed') { statusClass = 'status-completed'; statusText = '已完成'; }
+                else if (p.status === 'progress') { statusClass = 'status-progress'; statusText = '进行中'; }
+                else { statusClass = 'status-pending'; statusText = '待启动'; }
+
+                return `
+                    <tr>
+                        <td>${p.name}</td>
+                        <td>${p.dept}</td>
+                        <td>${p.progress}%</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderAll() {
+            renderMetrics();
+            renderBarChart();
+            renderDonut();
+            renderTable();
+        }
+
+        // 筛选交互
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filterVal = this.dataset.filter;
+                const periodVal = this.dataset.period;
+                if (filterVal) {
+                    currentFilter = filterVal;
+                    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                }
+                if (periodVal) {
+                    document.querySelectorAll('[data-period]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                }
+                renderAll();
+            });
+        });
+
+        // 表格排序
+        let sortColumn = null;
+        let sortDirection = 'asc';
+
+        document.querySelectorAll('th[data-sort]').forEach(th => {
+            th.addEventListener('click', function() {
+                const column = this.dataset.sort;
+                if (sortColumn === column) {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortColumn = column;
+                    sortDirection = 'asc';
+                }
+
+                document.querySelectorAll('th .sort-icon').forEach(icon => icon.textContent = '⇅');
+                const icon = this.querySelector('.sort-icon');
+                icon.textContent = sortDirection === 'asc' ? '↑' : '↓';
+
+                projectData.sort((a, b) => {
+                    let valA = a[column];
+                    let valB = b[column];
+                    if (typeof valA === 'string') {
+                        valA = valA.toLowerCase();
+                        valB = valB.toLowerCase();
+                    }
+                    if (valA < valB) return sortDirection === 'asc' ? -1 : 1;
+                    if (valA > valB) return sortDirection === 'asc' ? 1 : -1;
+                    return 0;
+                });
+                renderAll();
+            });
+        });
+
+        renderAll();
+    </script>
+</body>
+</html>

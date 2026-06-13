@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王焕曦 - 售前工程师实习简历</title>
+    <style>
+        :root {
+            --text: #222;
+            --text-secondary: #555;
+            --text-light: #888;
+            --bg: #f0f0ed;
+            --paper: #ffffff;
+            --border: #d0d0cc;
+            --accent: #2c5aa0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            padding: 40px 20px;
+        }
+
+        .resume {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--paper);
+            border: 1px solid var(--border);
+        }
+
+        /* 头部 */
+        .resume-header {
+            padding: 32px 40px 24px;
+            border-bottom: 2px solid var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .resume-header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .resume-header .line2 {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .resume-header .contact-line {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .resume-header .contact-line span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .photo-box {
+            width: 100px;
+            height: 130px;
+            border: 1px solid var(--border);
+            background: #f5f5f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+
+        /* 主体布局 */
+        .resume-body {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+        }
+
+        /* 左侧栏 */
+        .sidebar {
+            padding: 24px 20px;
+            border-right: 1px solid var(--border);
+            background: #fafaf8;
+        }
+
+        .sidebar-section {
+            margin-bottom: 24px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-item {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .honor-item {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .honor-item strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .link-item {
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+        }
+
+        .link-item a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .link-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* 右侧主内容 */
+        .main {
+            padding: 24px 32px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item {
+            margin-bottom: 16px;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 2px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .item-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .item-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .item-body {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .item-body ul {
+            padding-left: 16px;
+            margin-top: 4px;
+        }
+
+        .item-body li {
+            margin-bottom: 3px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            color: var(--accent);
+            background: #eef3fa;
+            padding: 1px 6px;
+            border-radius: 3px;
+            margin-left: 4px;
+            font-weight: 500;
+        }
+
+        .self-item {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .self-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* 打印 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .resume {
+                border: none;
+                box-shadow: none;
+            }
+            .sidebar {
+                background: #f5f5f3;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .resume-body {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 20px;
+            }
+            .resume-header {
+                padding: 24px 20px 20px;
+            }
+            .main {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <header class="resume-header">
+            <div class="header-left">
+                <h1>王焕曦</h1>
+                <div class="line2">售前工程师（实习） · 哈尔滨工业大学 · 信息管理与信息系统专业</div>
+                <div class="contact-line">
+                    <span>189-4647-5176</span>
+                    <span>3272733559@qq.com</span>
+                    <span>哈尔滨</span>
+                    <span>可到岗：2026年7月</span>
+                </div>
+            </div>
+            <div class="photo-box"><img src="证件照.jpg" alt="证件照" style="width:100%;height:100%;object-fit:cover;"></div>
+        </header>
+
+        <div class="resume-body">
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">教育背景</div>
+                    <div class="honor-item">
+                        <strong>哈尔滨工业大学</strong><br>
+                        信息管理与信息系统<br>
+                        本科在读（大二）<br>
+                        2024.09 — 2028.06<br>
+                        GPA 3.3/4.0
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">专业课程</div>
+                    <div class="skill-item">管理学</div>
+                    <div class="skill-item">运筹学</div>
+                    <div class="skill-item">管理信息系统</div>
+                    <div class="skill-item">商务数据分析</div>
+                    <div class="skill-item">大数据互联网金融</div>
+                    <div class="skill-item">数字经济</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">专业技能</div>
+                    <div class="skill-item">HTML / CSS / JavaScript</div>
+                    <div class="skill-item">响应式页面开发</div>
+                    <div class="skill-item">数据可视化</div>
+                    <div class="skill-item">Git 版本管理</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">荣誉奖项</div>
+                    <div class="honor-item">
+                        <strong>全国企业模拟竞争大赛</strong><br>
+                        省级三等奖（2025）
+                    </div>
+                    <div class="honor-item">
+                        <strong>正大杯市场调查与分析大赛</strong><br>
+                        校二等奖（2026）
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">作品</div>
+                    <div class="link-item">
+                        <a href="https://github.com/Kiri060127/portfolio-projects/blob/main/saas-landing.html" target="_blank">SaaS产品落地页</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://github.com/Kiri060127/portfolio-projects/blob/main/dashboard.html" target="_blank">数据看板演示</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://github.com/Kiri060127/portfolio-projects" target="_blank">GitHub 仓库</a>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main">
+                <div class="section">
+                    <div class="section-title">实习经历</div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">新东方</span>
+                            <span class="item-date">2026.01 — 2025.04</span>
+                        </div>
+                        <div class="item-sub">运营助理 <span class="tag">市场运营</span></div>
+                        <div class="item-body">
+                            <ul>
+                                <li>协助运营团队完成寒假课程推广活动，参与策划线上社群运营方案，累计触达家长及学生用户500+。</li>
+                                <li>负责每日运营数据整理与可视化报表制作，通过数据分析提出优化建议，课程咨询转化率提升约12%。</li>
+                                <li>独立承担部分售前咨询，解答客户问题，锻炼了面向客户的沟通能力与需求挖掘技巧。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">瓴岳科技</span>
+                            <span class="item-date">2025.07 — 2025.08</span>
+                        </div>
+                        <div class="item-sub">财务实习 <span class="tag">数据分析</span></div>
+                        <div class="item-body">
+                            <ul>
+                                <li>协助团队进行财务数据整理与分析，参与制作月度财务报表，提升数据敏感度与严谨性。</li>
+                                <li>协助撰写财务系统需求文档，与技术团队沟通对接，培养跨部门协作与需求分析能力。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">Coco</span>
+                            <span class="item-date">2024.11 — 2025.02</span>
+                        </div>
+                        <div class="item-sub">新媒体运营 <span class="tag">内容推广</span></div>
+                        <div class="item-body">
+                            <ul>
+                                <li>负责小红书与公众号内容策划与文案撰写，累计产出70+篇，月均曝光量提升20%。</li>
+                                <li>通过数据分析优化运营策略，互动率提升18%，新增粉丝1500+。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="section">
+                    <div class="section-title">项目经历</div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">智析数据协作平台官网</span>
+                            <span class="item-date">2026.05 — 2026.06</span>
+                        </div>
+                        <div class="item-sub">独立开发 <span class="tag">售前演示</span></div>
+                        <div class="item-body">
+                            <ul>
+                                <li>为模拟企业级产品设计完整品牌官网，以产品价值为主线组织信息架构。</li>
+                                <li>原生三件套实现导航栏滚动效果、定价对比表、客户案例轮播等模块。</li>
+                                <li>锻炼了面向客户的产品介绍与演示页面呈现能力。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">企业数字化转型数据看板</span>
+                            <span class="item-date">2026.06</span>
+                        </div>
+                        <div class="item-sub">独立开发 <span class="tag">数据可视化</span></div>
+                        <div class="item-body">
+                            <ul>
+                                <li>模拟售前向客户展示方案效果的场景，开发交互看板，包含指标卡片、动态图表、筛选排序等功能。</li>
+                                <li>原生 JavaScript 实现数据驱动视图更新，表格支持多列排序。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">校园经历</div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">班长</span>
+                            <span class="item-date">2024.09 — 至今</span>
+                        </div>
+                        <div class="item-body">
+                            统筹班级24人日常事务，组织班会、学风建设及团建活动。课程分组任务中担任组长，负责答辩汇报与协调沟通。
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">校影协社团 执行部部长</span>
+                            <span class="item-date">2025.09 — 至今</span>
+                        </div>
+                        <div class="item-body">
+                            策划并执行校内观影展、影评赛等3场活动，单场参与师生人数最高200+。负责场地协调、物资采购与流程管控，与学校各方沟通合作方案。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">自我评价</div>
+                    <div class="self-item">信管专业背景，兼具技术理解与商业分析思维，能通过数据支撑解决方案呈现。</div>
+                    <div class="self-item">企模竞赛与正大杯调研经历强化了在竞争与市场环境中用数据说话的能力。</div>
+                    <div class="self-item">班长与影协部长角色锻炼了组织协调与公众表达能力。</div>
+                    <div class="self-item">具备独立制作演示页面的动手能力，对售前工程师岗位有清晰认知。</div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

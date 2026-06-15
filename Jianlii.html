@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王焕曦 - 产品经理实习简历</title>
+    <style>
+        :root {
+            --text: #222;
+            --text-secondary: #555;
+            --text-light: #888;
+            --bg: #f0f0ed;
+            --paper: #ffffff;
+            --border: #d0d0cc;
+            --accent: #2c5aa0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            padding: 40px 20px;
+        }
+
+        .resume {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--paper);
+            border: 1px solid var(--border);
+        }
+
+        /* 头部 */
+        .resume-header {
+            padding: 32px 40px 24px;
+            border-bottom: 2px solid var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .resume-header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .resume-header .line2 {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .resume-header .contact-line {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .resume-header .contact-line span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .photo-box {
+            width: 100px;
+            height: 130px;
+            border: 1px solid var(--border);
+            background: #f5f5f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+
+        /* 主体布局 */
+        .resume-body {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+        }
+
+        /* 左侧栏 */
+        .sidebar {
+            padding: 24px 20px;
+            border-right: 1px solid var(--border);
+            background: #fafaf8;
+        }
+
+        .sidebar-section {
+            margin-bottom: 24px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-item {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .honor-item {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .honor-item strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .link-item {
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+        }
+
+        .link-item a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .link-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* 右侧主内容 */
+        .main {
+            padding: 20px 24px;
+        }
+
+        .section {
+            margin-bottom: 18px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item {
+            margin-bottom: 12px;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+            margin-bottom: 2px;
+        }
+
+        .item-title-wrap {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .item-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .item-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .item-body {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .item-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .item-list li {
+            margin-bottom: 6px;
+        }
+
+        .item-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            color: var(--accent);
+            background: #eef3fa;
+            padding: 1px 6px;
+            border-radius: 3px;
+            margin-left: 4px;
+            font-weight: 500;
+        }
+
+        .self-item {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .self-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* 打印 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .resume {
+                border: none;
+                box-shadow: none;
+            }
+            .sidebar {
+                background: #f5f5f3;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .resume-body {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 20px;
+            }
+            .resume-header {
+                padding: 24px 20px 20px;
+            }
+            .main {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <header class="resume-header">
+            <div class="header-left">
+                <h1>王焕曦</h1>
+                <div class="line2">产品经理（实习）· 哈尔滨工业大学 · 信息管理与信息系统专业</div>
+                <div class="contact-line">
+                    <span>189-4647-5176</span>
+                    <span>3272733559@qq.com</span>
+                    <span>哈尔滨</span>
+                    <span>可到岗：2026年7月</span>
+                </div>
+            </div>
+            <div class="photo-box"><img src="证件照.jpg" alt="证件照" style="width:100%;height:100%;object-fit:cover;"></div>
+        </header>
+
+        <div class="resume-body">
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">教育背景</div>
+                    <div class="honor-item">
+                        <strong>哈尔滨工业大学</strong><br>
+                        信息管理与信息系统<br>
+                        本科在读（大三）<br>
+                        2023.09 — 2027.06<br>
+                        GPA 3.3/4.0
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">专业课程</div>
+                    <div class="skill-item">管理学</div>
+                    <div class="skill-item">运筹学</div>
+                    <div class="skill-item">管理信息系统</div>
+                    <div class="skill-item">商务数据分析</div>
+                    <div class="skill-item">市场营销</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">专业技能</div>
+                    <div class="skill-item">用户需求分析与调研</div>
+                    <div class="skill-item">数据分析与业务洞察</div>
+                    <div class="skill-item">竞品调研与产品迭代</div>
+                    <div class="skill-item">PRD撰写与需求评审</div>
+                    <div class="skill-item">HTML/CSS/Javascript前端基础</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">荣誉奖项</div>
+                    <div class="honor-item">
+                        <strong>全国企业模拟竞争大赛</strong><br>
+                        省级三等奖（2025）
+                    </div>
+                    <div class="honor-item">
+                        <strong>正大杯市场调查与分析大赛</strong><br>
+                        校二等奖（2026）
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">作品</div>
+                    <div class="link-item">
+                        <a href="https://github.com/Kiri060127/portfolio-projects/blob/main/saas-landing.html" target="_blank">SaaS产品落地页</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://github.com/Kiri060127/portfolio-projects/blob/main/dashboard.html" target="_blank">数据看板演示Demo</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://github.com/Kiri060127/portfolio-projects" target="_blank">GitHub 产品项目集</a>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main">
+                <div class="section">
+                    <div class="section-title">实习经历</div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">新东方（运营助理）</span>
+                            <span class="item-date">2026.01-04</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>深入参与寒假课程推广，参与社群用户需求调研，基于数据分析优化决策，触达用户500+，推动课程转化率提升12%</li>
+                            <li>负责每日运营数据整理及周报分析，从转化漏斗中提炼产品改进方向，输出数据报告支持团队决策，强化数据驱动习惯</li>
+                            <li>模拟产品发布会场景，独立撰写推广方案并完成团队演示，积累产品需求表达与跨角色沟通经验</li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">瓴岳科技（财务实习）</span>
+                            <span class="item-date">2024.06-08</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>协助财务数据整理与月度报表制作，通过数据核对发现2处异常并推动解决，提升报表准确性，锻炼严谨的产品数据逻辑</li>
+                            <li>参与财务系统需求文档的撰写与修订，跨部门沟通业务需求，梳理流程痛点，积累系统类产品需求分析经验</li>
+                            <li>将业务语言转化为技术可理解的需求文档，为后续产品岗位的需求沟通与文档规范打下基础</li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">Coco（新媒体运营）</span>
+                            <span class="item-date">2023.11-2024.05</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>负责小红书等社媒内容策划与文案输出，独立产出70+篇原创内容，基于用户评论与互动数据进行选题迭代</li>
+                            <li>通过数据复盘优化内容策略，实现月均曝光量提升20%，新增粉丝1500+，具备从数据中提炼产品增长点的能力</li>
+                            <li>深度与用户沟通，收集使用反馈并形成用户画像，可迁移至产品场景中的用户研究与需求挖掘</li>
+                            <li>定期输出用户互动数据分析报告，为团队提供内容方向建议，培养产品化思维与决策支持能力</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">项目经历</div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">智析数据协作平台官网</span>
+                            <span class="item-date">2026.05-06</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>独立完成SaaS工具产品落地页的产品规划与开发（HTML/CSS/JS），适配移动端与PC端，模拟产品向客户展示价值场景</li>
+                            <li>设计产品功能展示区、客户案例模块及咨询转化入口，通过竞品分析优化页面布局，提升用户体验与转化说服力</li>
+                            <li>代码托管于 GitHub并提供在线预览，完整展示从产品构思到落地的闭环能力</li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">数据看板演示demo</span>
+                            <span class="item-date">2026.06</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>模拟产品向客户展示数据洞察场景，开发深色主题交互看板，包含指标卡片、动态图表、筛选排序等核心功能</li>
+                            <li>基于原生 JavaScript 实现数据驱动视图更新与事件委托，表格支持多列排序，强化产品演示时的流畅性与说服力</li>
+                            <li>通过项目训练了将抽象数据转化为可视化产品能力，并输出产品功能说明文档，演练产品宣讲节奏</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">校园经历</div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">班长</span>
+                            <span class="item-date">2024.09-至今</span>
+                        </div>
+                        <div class="item-body">统筹班级24人日常事务，组织班会、学风建设及团建活动，协调同学需求与反馈，锻炼沟通协调能力。</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">校影协执行部部长</span>
+                            <span class="item-date">2025.09-至今</span>
+                        </div>
+                        <div class="item-body">策划并执行校影展、影评赛等3场活动，单场参与人数200+，通过用户调研优化活动形式，积累活动运营与用户体验设计经验。</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">自我评价</div>
+                    <div class="item-body">
+                        具备技术基础（前端+数据分析）与产品思维，能快速理解产品逻辑并清晰表达用户价值。<br>
+                        有实际数据分析与用户研究经验，善于从数据中提炼洞察，用数据支撑产品决策与迭代。<br>
+                        对产品经理岗位有强烈兴趣，持续学习需求分析、竞品调研与原型设计，具备快速上手能力和强自驱力。
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

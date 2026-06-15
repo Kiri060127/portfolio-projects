@@ -168,11 +168,11 @@
 
         /* 右侧主内容 */
         .main {
-            padding: 24px 32px;
+            padding: 20px 24px;
         }
 
         .section {
-            margin-bottom: 24px;
+            margin-bottom: 18px;
         }
 
         .section:last-child {
@@ -186,12 +186,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             padding-bottom: 6px;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             border-bottom: 1px solid var(--border);
         }
 
         .item {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .item:last-child {
@@ -203,8 +203,14 @@
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 8px 12px;
             margin-bottom: 2px;
+        }
+
+        .item-title-wrap {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
         }
 
         .item-title {
@@ -227,16 +233,23 @@
         .item-body {
             font-size: 0.875rem;
             color: var(--text-secondary);
-            margin-top: 4px;
+            line-height: 1.6;
         }
 
-        .item-body ul {
-            padding-left: 16px;
-            margin-top: 4px;
+        .item-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
-        .item-body li {
-            margin-bottom: 3px;
+        .item-list li {
+            margin-bottom: 6px;
+        }
+
+        .item-list li:last-child {
+            margin-bottom: 0;
         }
 
         .tag {
@@ -336,8 +349,6 @@
                     <div class="skill-item">运筹学</div>
                     <div class="skill-item">管理信息系统</div>
                     <div class="skill-item">商务数据分析</div>
-                    <div class="skill-item">大数据互联网金融</div>
-                    <div class="skill-item">数字经济</div>
                 </div>
 
                 <div class="sidebar-section">
@@ -369,6 +380,9 @@
                         <a href="https://github.com/Kiri060127/portfolio-projects/blob/main/dashboard.html" target="_blank">数据看板演示</a>
                     </div>
                     <div class="link-item">
+                        <a href="https://github.com/Kiri060127/portfolio-projects/blob/main/%E7%AE%80%E5%8E%86.html" target="_blank">HTML格式简历</a>
+                    </div>
+                    <div class="link-item">
                         <a href="https://github.com/Kiri060127/portfolio-projects" target="_blank">GitHub 仓库</a>
                     </div>
                 </div>
@@ -379,43 +393,37 @@
                     <div class="section-title">实习经历</div>
                     <div class="item">
                         <div class="item-header">
-                            <span class="item-title">新东方</span>
-                            <span class="item-date">2026.01 — 2025.04</span>
+                            <span class="item-title">新东方（运营助理）</span>
+                            <span class="item-date">2026.01-04</span>
                         </div>
-                        <div class="item-sub">运营助理 <span class="tag">市场运营</span></div>
-                        <div class="item-body">
-                            <ul>
-                                <li>协助运营团队完成寒假课程推广活动，参与策划线上社群运营方案，累计触达家长及学生用户500+。</li>
-                                <li>负责每日运营数据整理与可视化报表制作，通过数据分析提出优化建议，课程咨询转化率提升约12%。</li>
-                                <li>独立承担部分售前咨询，解答客户问题，锻炼了面向客户的沟通能力与需求挖掘技巧。</li>
-                            </ul>
-                        </div>
+                        <ul class="item-list">
+                            <li>协助寒假课程推广，参与社群运营方案策划，触达用户500+，通过用户需求调研与内容优化，推动课程转化率提升12%</li>
+                            <li>负责每日运营数据整理与周报制作，用于团队内部汇报与决策支持，锻炼了数据驱动的沟通能力</li>
+                            <li>协助撰写推广方案并模拟向团队做方案演示，初步积累了对内对外讲解产品/活动的经验</li>
+                        </ul>
                     </div>
                     <div class="item">
                         <div class="item-header">
-                            <span class="item-title">瓴岳科技</span>
-                            <span class="item-date">2025.07 — 2025.08</span>
+                            <span class="item-title">瓴岳科技（财务实习）</span>
+                            <span class="item-date">2025.07-08</span>
                         </div>
-                        <div class="item-sub">财务实习 <span class="tag">数据分析</span></div>
-                        <div class="item-body">
-                            <ul>
-                                <li>协助团队进行财务数据整理与分析，参与制作月度财务报表，提升数据敏感度与严谨性。</li>
-                                <li>协助撰写财务系统需求文档，与技术团队沟通对接，培养跨部门协作与需求分析能力。</li>
-                            </ul>
-                        </div>
+                        <ul class="item-list">
+                            <li>协助财务数据整理与月度报表制作，通过数据核对分析，发现并解决2处数据异常，提升了报表准确性</li>
+                            <li>参与财务系统需求文档的撰写修订，与团队沟通业务需求，初步积累系统的需求分析经验</li>
+                            <li>跨部门协作中梳理财务流程，锻炼将业务语言转化为技术可理解需求的能力，为售前需求沟通打下基础</li>
+                        </ul>
                     </div>
                     <div class="item">
                         <div class="item-header">
-                            <span class="item-title">Coco</span>
-                            <span class="item-date">2024.11 — 2025.02</span>
+                            <span class="item-title">Coco（新媒体运营）</span>
+                            <span class="item-date">2024.11-2025.02</span>
                         </div>
-                        <div class="item-sub">新媒体运营 <span class="tag">内容推广</span></div>
-                        <div class="item-body">
-                            <ul>
-                                <li>负责小红书与公众号内容策划与文案撰写，累计产出70+篇，月均曝光量提升20%。</li>
-                                <li>通过数据分析优化运营策略，互动率提升18%，新增粉丝1500+。</li>
-                            </ul>
-                        </div>
+                        <ul class="item-list">
+                            <li>负责小红书等社媒内容策划及文案撰写，独立产出70+篇原创内容</li>
+                            <li>通过数据复盘与用户偏好分析优化选题策略，实现月均曝光量提升20%，新增粉丝1500+</li>
+                            <li>定期输出用户互动数据报告，为团队提供内容方向建议，培养了从数据中提炼洞察、驱动决策的能力</li>
+                            <li>运营过程中与用户沟通，提升了对用户需求的理解与表达能力，可迁移至售前场景中的客户需求挖掘</li>
+                        </ul>
                     </div>
                 </div>
                     
@@ -424,29 +432,24 @@
                     <div class="item">
                         <div class="item-header">
                             <span class="item-title">智析数据协作平台官网</span>
-                            <span class="item-date">2026.05 — 2026.06</span>
+                            <span class="item-date">2026.05-06</span>
                         </div>
-                        <div class="item-sub">独立开发 <span class="tag">售前演示</span></div>
-                        <div class="item-body">
-                            <ul>
-                                <li>为模拟企业级产品设计完整品牌官网，以产品价值为主线组织信息架构。</li>
-                                <li>原生三件套实现导航栏滚动效果、定价对比表、客户案例轮播等模块。</li>
-                                <li>锻炼了面向客户的产品介绍与演示页面呈现能力。</li>
-                            </ul>
-                        </div>
+                        <ul class="item-list">
+                            <li>独立完成一款SaaS工具的产品落地页开发（HTML/CSS/JS），适配移动端与PC端</li>
+                            <li>设计产品功能展示区、客户案例模块与咨询入口，模拟售前向客户展示产品价值的场景</li>
+                            <li>代码托管于 GitHub，并提供在线预览链接，便于面试官查看</li>
+                        </ul>
                     </div>
                     <div class="item">
                         <div class="item-header">
-                            <span class="item-title">企业数字化转型数据看板</span>
+                            <span class="item-title">数据看板演示demo</span>
                             <span class="item-date">2026.06</span>
                         </div>
-                        <div class="item-sub">独立开发 <span class="tag">数据可视化</span></div>
-                        <div class="item-body">
-                            <ul>
-                                <li>模拟售前向客户展示方案效果的场景，开发交互看板，包含指标卡片、动态图表、筛选排序等功能。</li>
-                                <li>原生 JavaScript 实现数据驱动视图更新，表格支持多列排序。</li>
-                            </ul>
-                        </div>
+                        <ul class="item-list">
+                            <li>模拟售前向客户展示方案效果的场景，开发深色主题交互看板，包含指标卡片、动态图表、筛选排序等功能</li>
+                            <li>基于原生 JavaScript 实现数据驱动视图更新，使用事件委托处理筛选逻辑，表格支持多列排序</li>
+                            <li>训练了将抽象数据转化为可视化洞察的能力，以及现场演示时的操作流畅性与说服力</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -455,29 +458,26 @@
                     <div class="item">
                         <div class="item-header">
                             <span class="item-title">班长</span>
-                            <span class="item-date">2024.09 — 至今</span>
+                            <span class="item-date">2024.09-至今</span>
                         </div>
-                        <div class="item-body">
-                            统筹班级24人日常事务，组织班会、学风建设及团建活动。课程分组任务中担任组长，负责答辩汇报与协调沟通。
-                        </div>
+                        <div class="item-body">统筹班级24人日常事务，组织班会、学风建设及团建活动。</div>
                     </div>
                     <div class="item">
                         <div class="item-header">
-                            <span class="item-title">校影协社团 执行部部长</span>
-                            <span class="item-date">2025.09 — 至今</span>
+                            <span class="item-title">校影协执行部部长</span>
+                            <span class="item-date">2025.09-至今</span>
                         </div>
-                        <div class="item-body">
-                            策划并执行校内观影展、影评赛等3场活动，单场参与师生人数最高200+。负责场地协调、物资采购与流程管控，与学校各方沟通合作方案。
-                        </div>
+                        <div class="item-body">组织策划校影观影展、影评赛等3场活动，单场参与人数200+。</div>
                     </div>
                 </div>
 
                 <div class="section">
                     <div class="section-title">自我评价</div>
-                    <div class="self-item">信管专业背景，兼具技术理解与商业分析思维，能通过数据支撑解决方案呈现。</div>
-                    <div class="self-item">企模竞赛与正大杯调研经历强化了在竞争与市场环境中用数据说话的能力。</div>
-                    <div class="self-item">班长与影协部长角色锻炼了组织协调与公众表达能力。</div>
-                    <div class="self-item">具备独立制作演示页面的动手能力，对售前工程师岗位有清晰认知。</div>
+                    <div class="item-body">
+                        具备技术基础（前端+数据）与业务思维，能快速理解产品功能并向客户清晰表达价值。<br>
+                        有实际数据分析和汇报经验，善于用数据支撑方案。<br>
+                        对售前工程师岗位有强烈兴趣，正在系统学习需求分析、竞品调研与演示技巧，可快速上手。
+                    </div>
                 </div>
             </main>
         </div>
